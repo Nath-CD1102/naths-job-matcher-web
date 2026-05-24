@@ -1,0 +1,272 @@
+{
+  "user": {
+    "name": "Nathaniel Jared",
+    "target_role": "Head of Content / Director of Content Operations",
+    "target_stage": "Series A/B SaaS",
+    "target_salary": "$100K-$200K USD/year"
+  },
+  "projects": [
+    {
+      "name": "WeMod/Wand",
+      "duration": "Current",
+      "type": "Content Operations & Team Leadership",
+      "metrics": {
+        "team_size": "3-10 writers",
+        "output": "60 guides/week",
+        "visitors": "448430 lifetime unique",
+        "q1_2026_visits": "242674",
+        "conversion_rate": "6.03% (Steam → Maps CTA)",
+        "pages_per_user": "6.66",
+        "growth": "Established consistent output at scale"
+      },
+      "skills": [
+        "Team leadership and scaling",
+        "AI workflow automation (Claude Projects)",
+        "Content strategy and prioritization",
+        "Analytics and performance reporting",
+        "SOP creation and process documentation",
+        "Quality assurance and editorial oversight",
+        "Cross-functional coordination",
+        "Data-driven decision making"
+      ],
+      "achievements": [
+        "94% asset collection time reduction (4.5h → 15min via Manus.im workflow)",
+        "Built results-first team culture with constructive dissent",
+        "Implemented content priority quadrant framework",
+        "Created comprehensive AI workflow systems for team output",
+        "Managed multilingual reporting across 6 languages (EN, ES, DE, FR, PT, JA)"
+      ]
+    },
+    {
+      "name": "StardewGuide",
+      "duration": "14 months",
+      "type": "Content Growth & Team Scaling",
+      "metrics": {
+        "traffic_growth": "361% (100K → 461K monthly sessions)",
+        "total_visits": "6M annual",
+        "revenue": "$25K MRR → $70K+ acquisition",
+        "content_output_growth": "300% (8 → 32 guides/month)",
+        "team_size": "3-10 writers scaled"
+      },
+      "skills": [
+        "Predictive content strategy",
+        "Team building and training",
+        "Template standardization and scaling",
+        "Competitive content gap analysis",
+        "Content lifecycle management",
+        "Quality assurance at scale"
+      ],
+      "achievements": [
+        "361% monthly traffic growth over 14 months",
+        "Scaled team output 300% within 3 months",
+        "Built topical authority across 300+ guide pages",
+        "Contributed to $70K+ acquisition valuation",
+        "Trained 8 writers on SEO and content standards"
+      ]
+    },
+    {
+      "name": "GTA-X",
+      "duration": "6 months",
+      "type": "Content Leadership & UX Optimization",
+      "metrics": {
+        "sessions": "3.5M total (150K → 900K peak monthly)",
+        "monthly_average": "583K sessions",
+        "personal_articles": "~50 articles generating 400K organic visits",
+        "engagement_improvement": "51% (bounce rate 70% → 36%, session duration 3x)",
+        "team_size": "4-5 writers led"
+      },
+      "skills": [
+        "Predictive content strategy based on leaks/updates",
+        "Team leadership and hiring",
+        "Video content production (DaVinci Resolve, CapCut, ElevenLabs)",
+        "Multilingual content governance",
+        "UX optimization through A/B testing",
+        "Social media coordination and growth",
+        "Editorial QA and content governance"
+      ],
+      "achievements": [
+        "3.5M total sessions in 6 months during GTA 6 hype cycle",
+        "51% engagement improvement through UX optimization",
+        "Salvage Yard guide: 130K unique visits in 2 days",
+        "Grew Facebook from 0 to 12K followers in 6 months",
+        "Built 800-page vehicle database establishing topical authority"
+      ]
+    },
+    {
+      "name": "DEFRAGG",
+      "duration": "Lean startup",
+      "type": "Content & Lead Generation",
+      "metrics": {
+        "lead_magnet_conversion": "29% (2,000 subscribers from 6,900 visitors)",
+        "organic_visitors": "6,900 to flagship article",
+        "turnaround_reduction": "70% (AI workflow automation)",
+        "subscriber_base": "10,000 → 12,000 (+2,000 from lead magnet)",
+        "content_scaling": "2 → 4 blogs per week"
+      },
+      "skills": [
+        "Content strategy and lead generation",
+        "AI-powered content operations",
+        "Multi-channel distribution strategy",
+        "Email newsletter management (ConvertKit)",
+        "Community-led growth and distribution",
+        "Gated content strategy",
+        "Cross-functional collaboration"
+      ],
+      "achievements": [
+        "29% conversion rate on lead magnet (vs 2-5% industry average)",
+        "70% turnaround time reduction through AI workflow",
+        "Built multi-channel distribution across 5 platforms in 60 days",
+        "2,000 subscribers from single campaign at zero acquisition cost",
+        "Scaled content output 2x while maintaining quality"
+      ]
+    },
+    {
+      "name": "YOWL",
+      "duration": "6 months",
+      "type": "Content Operations & Workflow Automation",
+      "metrics": {
+        "client_capacity": "3 simultaneous accounts (vs industry standard 1-2)",
+        "content_output": "6,000 words weekly",
+        "turnaround_time": "48h → 6h per article",
+        "hours_saved_weekly": "22 hours personal",
+        "operational_efficiency": "300% capacity increase"
+      },
+      "skills": [
+        "AI-powered content workflow design",
+        "Content strategy across multiple brands",
+        "Local SEO and keyword research",
+        "Quality assurance and editorial review",
+        "Process documentation and scalability",
+        "Multilingual content (EN, DE)",
+        "Client management and delivery tracking"
+      ],
+      "achievements": [
+        "22 hours weekly saved through AI workflow automation",
+        "48h → 6h turnaround time per article",
+        "Managed 3 simultaneous client accounts (50% above industry standard)",
+        "Created replicable workflow IP adopted agency-wide",
+        "Maintained consistent quality across 6,000 words weekly output"
+      ]
+    },
+    {
+      "name": "AvidGamer",
+      "duration": "12 months",
+      "type": "Content Scaling & Database Automation",
+      "metrics": {
+        "site_growth": "0 → 50K total sessions",
+        "content_output_growth": "133% (12 → 28 guides/month)",
+        "pages_created": "6,000+ wiki pages",
+        "guides_produced": "168 evergreen guides + 25 tier-list guides",
+        "team_size": "2-7 writers scaled",
+        "automation_savings": "~1,000 hours ($10K operational cost)"
+      },
+      "skills": [
+        "Content automation and systems engineering",
+        "Team building and performance management",
+        "Competitive content strategy",
+        "Template standardization",
+        "Hiring and training leadership",
+        "Database management and workflows",
+        "Content lifecycle management"
+      ],
+      "achievements": [
+        "Google Sheets → WordPress automation saved 1,000 hours",
+        "Scaled wiki production 10 → 45 pages daily in 90 days",
+        "Completed 6,000-page database 6 months ahead of timeline",
+        "Content output up 133% while reducing editing time 40%",
+        "Built and managed 2-7 person team"
+      ]
+    }
+  ],
+  "core_competencies": {
+    "team_leadership": {
+      "level": "Senior",
+      "evidence": [
+        "Led teams of 3-10 writers across multiple projects",
+        "Onboarded and trained 8+ writers on SEO/content standards",
+        "Scaled team output 300%+ through process optimization",
+        "Built results-first culture with constructive dissent"
+      ]
+    },
+    "ai_workflow_automation": {
+      "level": "Expert",
+      "evidence": [
+        "94% asset collection reduction (Manus.im workflow)",
+        "70% turnaround time reduction (AI content ops)",
+        "22 hours/week saved through Claude Projects + ChatGPT-4",
+        "Created replicable workflow IP adopted agency-wide"
+      ]
+    },
+    "content_strategy": {
+      "level": "Senior",
+      "evidence": [
+        "361% traffic growth at StardewGuide",
+        "3.5M sessions at GTA-X",
+        "Predictive content strategy based on game updates/leaks",
+        "Competitive content gap analysis and topical authority"
+      ]
+    },
+    "analytics_reporting": {
+      "level": "Senior",
+      "evidence": [
+        "6.03% CTA conversion tracking",
+        "Multilingual reporting across 6 languages",
+        "A/B testing and UX optimization (51% improvement)",
+        "Weekly automated reporting and performance tracking"
+      ]
+    },
+    "process_optimization": {
+      "level": "Expert",
+      "evidence": [
+        "SOP creation and documentation across projects",
+        "Template standardization scaling output 2-3x",
+        "1,000 hours saved through Google Sheets → WordPress automation",
+        "Created comprehensive onboarding/training materials"
+      ]
+    },
+    "conversion_lead_generation": {
+      "level": "Senior",
+      "evidence": [
+        "29% conversion rate on lead magnets (vs 2-5% industry avg)",
+        "6.03% CTA conversion (Steam → Maps)",
+        "2,000 subscribers from single campaign at zero cost",
+        "Multi-channel distribution driving high-intent traffic"
+      ]
+    }
+  },
+  "green_flags_keywords": [
+    "team leadership",
+    "team scaling",
+    "AI workflow",
+    "automation",
+    "claude",
+    "chatgpt",
+    "content strategy",
+    "seo",
+    "analytics",
+    "reporting",
+    "conversion",
+    "lead generation",
+    "email marketing",
+    "newsletter",
+    "process optimization",
+    "sop",
+    "documentation",
+    "template",
+    "scaling",
+    "team management",
+    "hiring",
+    "training",
+    "quality assurance",
+    "editorial",
+    "performance"
+  ],
+  "red_flags": [
+    "gaming (vertical auto-excluded per PROTOCOL)",
+    "us-only without flexibility",
+    "degree required without flexibility",
+    "500+ employees",
+    "series c or later",
+    "100% writing/execution (no leadership)"
+  ]
+}

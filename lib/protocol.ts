@@ -1,7 +1,9 @@
 /**
  * PROTOCOL 1A v3 Detector
- * Validates job descriptions against PROTOCOL rules
+ * Cross-references job descriptions against actual R&R background
  */
+
+import profile from "../config/profile.json";
 
 const PROTOCOL = {
   requirements: [
@@ -11,27 +13,10 @@ const PROTOCOL = {
     { id: 4, name: "Campaign coordination and multi-channel execution", weight: 1 },
     { id: 5, name: "SOP building and process documentation", weight: 1 },
     { id: 6, name: "Performance reporting and data-driven decision making", weight: 1 },
-    { id: 7, name: "SEO and keyword research (multilingual: EN, ES, DE, FR, PT, JA)", weight: 1 },
+    { id: 7, name: "SEO and keyword research", weight: 1 },
     { id: 8, name: "Lead generation, conversion tracking, and pipeline attribution", weight: 1 },
     { id: 9, name: "Email operations and newsletter management", weight: 1 },
     { id: 10, name: "Content calendar management and scheduling", weight: 1 },
-  ],
-
-  greenFlags: [
-    { keyword: "hubspot", category: "HubSpot ✓" },
-    { keyword: "ai", category: "AI tools" },
-    { keyword: "sop", category: "SOP building" },
-    { keyword: "healthcare", category: "[Target Vertical: Healthcare]" },
-    { keyword: "fintech", category: "[Fintech]" },
-    { keyword: "legal tech", category: "[Legal Tech]" },
-    { keyword: "edtech", category: "[EdTech]" },
-    { keyword: "insurtech", category: "[InsurTech]" },
-    { keyword: "usd", category: "USD-denominated pay" },
-    { keyword: "series a", category: "Seed to Series B" },
-    { keyword: "series b", category: "Seed to Series B" },
-    { keyword: "lean", category: "Small team/lean startup" },
-    { keyword: "anywhere", category: "[Worldwide]" },
-    { keyword: "worldwide", category: "[Worldwide]" },
   ],
 
   tiers: {
@@ -41,6 +26,9 @@ const PROTOCOL = {
     3: { min: 80, max: 90, name: "Tier 3" },
     4: { min: 90, max: 100, name: "Tier 4" },
   },
+
+  userGreenFlags: profile.core_competencies ? Object.keys(profile.core_competencies) : [],
+  userRedFlags: profile.red_flags || [],
 };
 
 export interface DetectorInput {
@@ -126,23 +114,63 @@ const validateRequirements = (job: DetectorInput) => {
   let implicitMatches = 0;
 
   PROTOCOL.requirements.forEach((req) => {
-    const keywords = req.name.toLowerCase().split(/\s+/);
+    // Explicit match: requirement keyword directly in job text
+    const reqKeywords = req.name.toLowerCase().split(/\s+/);
+    const hasExplicit = reqKeywords.some((kw) => jobText.includes(kw));
 
-    if (keywords.some((kw) => jobText.includes(kw))) {
+    // Implicit match: cross-reference user's actual background
+    let hasImplicit = false;
+
+    if (req.id === 1) {
+      // AI workflow: WeMod, DEFRAGG, YOWL all demonstrate this
+      hasImplicit = jobText.includes("claude") || jobText.includes("chatgpt") ||
+                   jobText.includes("ai-powered") || jobText.includes("ai workflow") ||
+                   jobText.includes("automation") || jobText.includes("workflow optimization");
+    } else if (req.id === 2) {
+      // Team leadership: StardewGuide, GTA-X, AvidGamer all demonstrate this
+      hasImplicit = jobText.includes("lead") || jobText.includes("manage team") ||
+                   jobText.includes("director") || jobText.includes("head of") ||
+                   jobText.includes("team scaling") || jobText.includes("hiring");
+    } else if (req.id === 3) {
+      // Cross-functional: WeMod coordinated with maps team
+      hasImplicit = jobText.includes("cross-functional") || jobText.includes("stakeholder") ||
+                   jobText.includes("collaborate") || jobText.includes("coordination");
+    } else if (req.id === 4) {
+      // Multi-channel: DEFRAGG built multi-channel distribution
+      hasImplicit = jobText.includes("multi-channel") || jobText.includes("distribution") ||
+                   jobText.includes("campaign") || jobText.includes("channel");
+    } else if (req.id === 5) {
+      // SOP/Process: All projects demonstrate process documentation
+      hasImplicit = jobText.includes("sop") || jobText.includes("documentation") ||
+                   jobText.includes("process") || jobText.includes("playbook") ||
+                   jobText.includes("template") || jobText.includes("standardiz");
+    } else if (req.id === 6) {
+      // Analytics: All projects have performance reporting
+      hasImplicit = jobText.includes("analytics") || jobText.includes("metrics") ||
+                   jobText.includes("reporting") || jobText.includes("data-driven") ||
+                   jobText.includes("performance") || jobText.includes("tracking");
+    } else if (req.id === 7) {
+      // SEO: StardewGuide, GTA-X, YOWL, AvidGamer all SEO-focused
+      hasImplicit = jobText.includes("seo") || jobText.includes("keyword") ||
+                   jobText.includes("search") || jobText.includes("organic");
+    } else if (req.id === 8) {
+      // Lead generation/Conversion: DEFRAGG, WeMod both show this
+      hasImplicit = jobText.includes("lead") || jobText.includes("conversion") ||
+                   jobText.includes("pipeline") || jobText.includes("attribution");
+    } else if (req.id === 9) {
+      // Email/Newsletter: DEFRAGG managed newsletters
+      hasImplicit = jobText.includes("email") || jobText.includes("newsletter") ||
+                   jobText.includes("communication") || jobText.includes("messaging");
+    } else if (req.id === 10) {
+      // Content calendar: All projects managed content planning
+      hasImplicit = jobText.includes("calendar") || jobText.includes("schedul") ||
+                   jobText.includes("planning") || jobText.includes("content management");
+    }
+
+    if (hasExplicit) {
       explicitWeight += req.weight;
       explicitMatches++;
-    } else if (
-      (req.id === 1 && (jobText.includes("automat") || jobText.includes("workflow") || jobText.includes("process"))) ||
-      (req.id === 2 && (jobText.includes("lead") || jobText.includes("manage") || jobText.includes("team"))) ||
-      (req.id === 3 && (jobText.includes("cross-functional") || jobText.includes("stakeholder") || jobText.includes("collaborat"))) ||
-      (req.id === 4 && (jobText.includes("campaign") || jobText.includes("multi-channel") || jobText.includes("channel"))) ||
-      (req.id === 5 && (jobText.includes("documentation") || jobText.includes("playbook") || jobText.includes("guideline"))) ||
-      (req.id === 6 && (jobText.includes("analytic") || jobText.includes("metric") || jobText.includes("reporting") || jobText.includes("data"))) ||
-      (req.id === 7 && (jobText.includes("seo") || jobText.includes("keyword") || jobText.includes("ranking") || jobText.includes("organic"))) ||
-      (req.id === 8 && (jobText.includes("lead") || jobText.includes("conversion") || jobText.includes("pipeline") || jobText.includes("attribution"))) ||
-      (req.id === 9 && (jobText.includes("email") || jobText.includes("newsletter") || jobText.includes("communication"))) ||
-      (req.id === 10 && (jobText.includes("calendar") || jobText.includes("schedul") || jobText.includes("planning")))
-    ) {
+    } else if (hasImplicit) {
       implicitWeight += req.weight;
       implicitMatches++;
     }
@@ -170,12 +198,39 @@ const assignTier = (matchPercentage: number) => {
 const extractGreenFlags = (job: DetectorInput) => {
   const jobText = `${job.title} ${job.description || ""}`.toLowerCase();
   const flags: string[] = [];
-  const seenCategories = new Set<string>();
+  const seenFlags = new Set<string>();
 
-  PROTOCOL.greenFlags.forEach((flag) => {
-    if (jobText.includes(flag.keyword) && !seenCategories.has(flag.category)) {
-      flags.push(flag.category);
-      seenCategories.add(flag.category);
+  // Check for user's core competencies
+  const competencies = [
+    { keyword: ["team", "leadership", "lead", "director", "head of"], flag: "Team Leadership ✓" },
+    { keyword: ["ai", "claude", "chatgpt", "automat"], flag: "AI/Automation ✓" },
+    { keyword: ["seo", "keyword", "organic"], flag: "SEO Expertise" },
+    { keyword: ["analytics", "metrics", "reporting", "data"], flag: "Analytics ✓" },
+    { keyword: ["conversion", "lead", "pipeline"], flag: "Conversion/Lead Gen ✓" },
+    { keyword: ["email", "newsletter"], flag: "Email/Newsletter" },
+    { keyword: ["hubspot"], flag: "HubSpot Integration" },
+    { keyword: ["sop", "process", "documentation", "template"], flag: "Process Optimization ✓" },
+  ];
+
+  competencies.forEach((comp) => {
+    if (comp.keyword.some((kw) => jobText.includes(kw)) && !seenFlags.has(comp.flag)) {
+      flags.push(comp.flag);
+      seenFlags.add(comp.flag);
+    }
+  });
+
+  // Check for target company stage
+  if ((jobText.includes("series a") || jobText.includes("series b")) && !seenFlags.has("Series A/B ✓")) {
+    flags.push("Series A/B ✓");
+    seenFlags.add("Series A/B ✓");
+  }
+
+  // Check for industry focus
+  const targetVerticals = ["healthcare", "fintech", "legal tech", "edtech", "insurtech", "saas"];
+  targetVerticals.forEach((vertical) => {
+    if (jobText.includes(vertical) && !seenFlags.has(`[${vertical}]`)) {
+      flags.push(`[${vertical}]`);
+      seenFlags.add(`[${vertical}]`);
     }
   });
 
