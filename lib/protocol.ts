@@ -120,6 +120,8 @@ const checkAutoExclude = (job: DetectorInput) => {
 
 const validateRequirements = (job: DetectorInput) => {
   const jobText = `${job.title} ${job.description || ""}`.toLowerCase();
+  let explicitWeight = 0;
+  let implicitWeight = 0;
   let explicitMatches = 0;
   let implicitMatches = 0;
 
@@ -127,6 +129,7 @@ const validateRequirements = (job: DetectorInput) => {
     const keywords = req.name.toLowerCase().split(/\s+/);
 
     if (keywords.some((kw) => jobText.includes(kw))) {
+      explicitWeight += req.weight;
       explicitMatches++;
     } else if (
       (req.id === 1 && (jobText.includes("automat") || jobText.includes("workflow") || jobText.includes("process"))) ||
@@ -140,17 +143,19 @@ const validateRequirements = (job: DetectorInput) => {
       (req.id === 9 && (jobText.includes("email") || jobText.includes("newsletter") || jobText.includes("communication"))) ||
       (req.id === 10 && (jobText.includes("calendar") || jobText.includes("schedul") || jobText.includes("planning")))
     ) {
+      implicitWeight += req.weight;
       implicitMatches++;
     }
   });
 
-  return { explicitMatches, implicitMatches };
+  return { explicitMatches, implicitMatches, explicitWeight, implicitWeight };
 };
 
-const calculateProtocolMatch = (explicit: number, implicit: number) => {
+const calculateProtocolMatch = (explicitWeight: number, implicitWeight: number) => {
   const totalWeight = PROTOCOL.requirements.reduce((sum, r) => sum + r.weight, 0);
-  const earnedPoints = explicit * 2 + implicit; // Simplified: explicit matches weight 2, implicit weight 1
-  return Math.round((earnedPoints / totalWeight) * 100);
+  const earnedPoints = explicitWeight + implicitWeight;
+  const percentage = Math.round((earnedPoints / totalWeight) * 100);
+  return Math.min(percentage, 100); // Cap at 100%
 };
 
 const assignTier = (matchPercentage: number) => {
@@ -179,8 +184,8 @@ const extractGreenFlags = (job: DetectorInput) => {
 
 export const detectProtocolCompliance = (job: DetectorInput): DetectorOutput => {
   const autoExclude = checkAutoExclude(job);
-  const { explicitMatches, implicitMatches } = validateRequirements(job);
-  const protocolMatch = calculateProtocolMatch(explicitMatches, implicitMatches);
+  const { explicitMatches, implicitMatches, explicitWeight, implicitWeight } = validateRequirements(job);
+  const protocolMatch = calculateProtocolMatch(explicitWeight, implicitWeight);
   const tier = assignTier(protocolMatch);
   const greenFlags = extractGreenFlags(job);
 
