@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nath's Job Matcher
+
+A **PROTOCOL 1A v3** job scoring tool. Paste a job description, get an intelligent match percentage against your background.
+
+## Features
+
+- **PROTOCOL 1A v3 Matching** — 10-requirement framework with explicit/implicit matching
+- **Intelligent Detection** — Auto-exclude criteria (gaming, US-only, degree-only)
+- **Green Flags** — HubSpot, AI tools, team leadership, target verticals
+- **Recommendations** — APPLY / REVIEW / PASS based on match %
+- **Tier Assignment** — Tier 0-4 based on 50-100% match range
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: TailwindCSS
+- **Deployment**: Vercel (auto-deployed on GitHub push)
 
 ## Getting Started
 
-First, run the development server:
+### Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Paste job title, company, and description
+2. Click "Score Job"
+3. Get match percentage and recommendation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## API
 
-## Learn More
+```bash
+POST /api/detect
 
-To learn more about Next.js, take a look at the following resources:
+{
+  "title": "Director of Content",
+  "company": "TechCorp",
+  "description": "Full job description text..."
+}
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Returns:
+{
+  "match_percentage": 78,
+  "tier": 2,
+  "recommendation": "APPLY",
+  "green_flags": ["HubSpot ✓", "AI tools", "Series B"],
+  ...
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+Deployed on Vercel with auto-updates on every GitHub push.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Production**: Main branch auto-deploys
+- **Preview**: PR/feature branches get preview URLs
+- **Zero Config**: Vercel auto-detects Next.js
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+```
+app/
+├── page.tsx           ← Form UI
+└── api/detect/
+    └── route.ts       ← Scoring endpoint
+
+lib/
+└── protocol.ts        ← PROTOCOL 1A v3 detector logic
+```
+
+---
+
+Built for personal use. PROTOCOL 1A v3 methodology from Operation Trojan Horse Job Hunt.

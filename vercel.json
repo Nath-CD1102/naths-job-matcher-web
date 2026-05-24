@@ -1,0 +1,16 @@
+{
+  "name": "naths-job-matcher-web",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "github": {
+    "enabled": true
+  },
+  "env": [
+    {
+      "key": "NEXT_PUBLIC_APP_NAME",
+      "value": "Nath's Job Matcher"
+    }
+  ]
+}
