@@ -7,10 +7,7 @@
   "github": {
     "enabled": true
   },
-  "env": [
-    {
-      "key": "NEXT_PUBLIC_APP_NAME",
-      "value": "Nath's Job Matcher"
-    }
-  ]
+  "env": {
+    "NEXT_PUBLIC_APP_NAME": "Nath's Job Matcher"
+  }
 }
